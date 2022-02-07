@@ -39,9 +39,13 @@ contract Lottery {
         return costToEnter;
     }
 
-    function startLottery() public {}
+    function startLottery() public onlyOwner {
+        require(
+            lottery_state == LOTTERY_STATE.CLOSED,
+            "Cn't start a new lottery yet!"
+        );
+        lottery_state = LOTTERY_STATE.OPEN;
+    }
 
     function endLottery() public {}
 }
-
-// https://eth-mainnet.alchemyapi.io/v2/JQ1AOmVlqYoL_6qf5kh3dpAhMS_3MG5K
